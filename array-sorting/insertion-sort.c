@@ -6,7 +6,7 @@
 
 int main() {
 	int arr[MAX_ARR_SIZE];
-	int n;
+	int n, temp;
 	printf("Enter size of array(MAX=%d): ", MAX_ARR_SIZE);
 	scanf("%d", &n);
 	printf("Enter the elements: \n");
@@ -14,20 +14,19 @@ int main() {
 		scanf("%d", &arr[i]);
 	}
 
-	printf("\n---Starting Bubble Sort---\n");
+	printf("\n---Starting Insertion Sort---\n");
 	printf("Initial: ");
 	print_array(arr, n);
 
-	for (int i = 0; i < n - 1; i++) {
-		for (int j = 0; j < n - i - 1; j++) {
-			if (arr[j] > arr[j + 1]) {
-				int temp = arr[j];
-				arr[j] = arr[j + 1];
-				arr[j + 1] = temp;
-			}
-			printf("[i=%d, j=%d]: ", i, j);
-			print_array(arr, n);
+	for (int i = 1; i < n; i++) {
+		int key = arr[i];
+		int j = i;
+		while (j > 0 && arr[j - 1] > key) {
+			arr[j] = arr[j - 1];
+			j = j - 1;
 		}
+		arr[j] = key;
+		print_array(arr, n);
 	}
 
 	printf("Sorted array is: \n");

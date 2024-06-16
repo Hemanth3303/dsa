@@ -14,20 +14,21 @@ int main() {
 		scanf("%d", &arr[i]);
 	}
 
-	printf("\n---Starting Bubble Sort---\n");
+	printf("\n---Starting Selection Sort---\n");
 	printf("Initial: ");
 	print_array(arr, n);
 
 	for (int i = 0; i < n - 1; i++) {
-		for (int j = 0; j < n - i - 1; j++) {
-			if (arr[j] > arr[j + 1]) {
-				int temp = arr[j];
-				arr[j] = arr[j + 1];
-				arr[j + 1] = temp;
+		int min_index = i;
+		for (int j = i + 1; j < n; j++) {
+			if (arr[j] < arr[min_index]) {
+				min_index = j;
 			}
-			printf("[i=%d, j=%d]: ", i, j);
-			print_array(arr, n);
 		}
+		int temp = arr[i];
+		arr[i] = arr[min_index];
+		arr[min_index] = temp;
+		print_array(arr, n);
 	}
 
 	printf("Sorted array is: \n");
